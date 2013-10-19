@@ -25,12 +25,14 @@ public class Button extends UIEntity {
     public Font font;
     
     public Button(int x, int y, Color buttonColor, 
-            Color textColor, String name, Font font) {
+            Color textColor, String name, Font font, int w, int h) {
         this.x = x;
         this.y = y;
         
-        this.width = name.length() * font.getSize();
-        this.height = 10 + font.getSize();
+        //this.width = name.length() * font.getSize();
+        //this.height = 10 + font.getSize();
+        this.width = w;
+        this.height = h;
         
         this.buttonColor = buttonColor;
         highlightColor = buttonColor.brighter();
@@ -38,7 +40,7 @@ public class Button extends UIEntity {
         this.name = name;
         this.font = font;
         
-        rec = new Rectangle(x, y, width, height);
+        rec = new Rectangle(x, y, w, h);
     }
     
     public void checkForClick(int mousex, int mousey) {
