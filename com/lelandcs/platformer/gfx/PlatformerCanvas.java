@@ -63,7 +63,7 @@ public class PlatformerCanvas extends Canvas {
     
     private void loadFonts() {
         fonts = new HashMap<String, Font>();
-        Font f1 = new Font("Arial", Font.ITALIC, 24);
+        Font f1 = new Font("Monospaced", Font.ITALIC, 24);
         fonts.put(f1.getFamily(), f1);
     }
 
