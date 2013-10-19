@@ -42,7 +42,7 @@ public class FishBowl extends GameState {
     }
     
     private void loadUI() {
-        uiEntities.add(new Image("./bowl.png"));
+        uiEntities.add(new Image("./bowl2.png"));
         uiEntities.add(new Button(master.CWIDTH - 35, 0, Color.CYAN, Color.BLACK, "X", master.fonts.get("Arial"), 35, 30));
         // add recovery stuff
         
@@ -109,7 +109,7 @@ public class FishBowl extends GameState {
             }
             else if (last instanceof Image) {
                 Image i = (Image) last;
-                if (i.name.equals("./bowl.png")) {
+                if (i.name.equals("./bowl2.png")) {
                     fishman.sendAddTask();
                 }
             }
