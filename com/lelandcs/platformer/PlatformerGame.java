@@ -15,20 +15,21 @@ public class PlatformerGame extends JFrame implements WindowListener {
 	private PlatformerCanvas canvas;
 
 	public PlatformerGame() {
-            super("Platformer Game"); // argument - title of window
+		super("FishStuff"); // argument - title of window
+        this.setUndecorated(true); //Removes the window
 
-            canvas = new PlatformerCanvas(this, FPS);
-            add(canvas); // add the game graphics panel to the JFrame
-            
-            pack(); // fixes window size
+        canvas = new PlatformerCanvas(this, FPS);
+        add(canvas); // add the game graphics panel to the JFrame
+        
+        pack(); // fixes window size
 
-            addWindowListener(this); // keep track of events on the window
+        addWindowListener(this); // keep track of events on the window
 
-            setResizable(false); // sets the window unresizable
+        setResizable(false); // sets the window unresizable
 
-            setVisible(true); // sets the window visible
-
-            setLocationRelativeTo(null); // centers the window 
+        setVisible(true); // sets the window visible
+        
+        this.setBounds(100, 100, 400, 400);
 	}
         
         /* Start point */
