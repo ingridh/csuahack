@@ -1,10 +1,10 @@
 Fishbowl Project
 ==================
 
-###Objective
+Objective
 To create a desktop to-do list like program with a fish in a fish bowl interface.
 
-###Instructions
+Instructions
 Users will enter the task with their projected due date and time and the task name. Eg. "CS61 Proj." 
 The task will be created as a "fish" which will swim around the fish tank until the task is complete and the user "feeds" the fish - checks off the task.  
 If the user does not compelte the task by the deadline, the fish will die and float to the top. Otherwise, tasks/fish that are still ongoing will swim around the tank. Tasks that are complete will swim to a castle on the bottom of the tank and disappear. 
