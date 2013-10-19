@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import java.lang.Object*;
 
 public class Fish{
 	
@@ -26,21 +27,30 @@ public class Fish{
 		image = new Image("fish.png");
 		image.x = 0; //Get random x and y coords for 
 		image.y = 0;
-		state = State.FADEIN; 
-		
-		
-				
+		state = State.FADEIN; 			
 	}
 	
 	public void update() {
 		//currTime += time;
 		if (state == State.DIE) {
+			image.diry += 1; //floats fish to the top
+			if (image.y == rectangle.y) {
 			state = State.FADEOUT; //If it has died in the last cycle begin fadeout! 
+			}
 		}
-		if (currTime >= timeInterval) {
+		if (currTime >= this.expiredDate) {
 			state = State.DIE; // Once the time's up this fish dies!
 		}
-		
+		else if (state == FADEIN) {
+			state = SWIM;
+		} else {
+			if (image.x <= rectangle.x) || (image.x >= rectangle.x + width) { //moves fish back and forth the bowl
+				image.dirx = x(-1)*(image.dirx);
+			image.diry = Math.random()/3.0f; //to scale down the y movement 
+		} if (image.y <= rectangle.y -length || (image.y >= rectangle.y)) {
+			image.diry = -image.diry;
+
+		}
 		
 		
 	}
