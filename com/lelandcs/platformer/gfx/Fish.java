@@ -4,7 +4,6 @@ import com.lelandcs.platformer.Date;
 import com.lelandcs.platformer.gfx.gui.Image;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.lang.Object.*;
 import java.util.Calendar;
  
 public class Fish{
