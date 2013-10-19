@@ -2,6 +2,7 @@ package com.lelandcs.platformer.states;
 
 import com.lelandcs.platformer.gfx.FishManager;
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
+import com.lelandcs.platformer.gfx.Recovery;
 import com.lelandcs.platformer.gfx.gui.Button;
 import com.lelandcs.platformer.gfx.gui.Image;
 import com.lelandcs.platformer.gfx.gui.UIEntity;
@@ -15,7 +16,7 @@ import java.awt.event.KeyEvent;
  */
 public class FishBowl extends GameState {
     
-    private FishManager fishman;
+    public FishManager fishman;
     
     private ParticleStream[] bubbles = {
         new ParticleStream(200, 230, 105, 75, 1, 1,3, 1.5f, "./bubble.png", false, true),
@@ -41,6 +42,8 @@ public class FishBowl extends GameState {
     private void loadUI() {
         uiEntities.add(new Image("./bowl.png"));
         uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "X", master.fonts.get("Arial"), 30, 30));
+    
+        Recovery.openFile(fishman);
     }
     
     public void update() {

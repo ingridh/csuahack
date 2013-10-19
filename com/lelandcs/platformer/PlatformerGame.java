@@ -1,6 +1,8 @@
 package com.lelandcs.platformer;
 
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
+import com.lelandcs.platformer.gfx.Recovery;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -45,6 +47,7 @@ public class PlatformerGame extends JFrame implements WindowListener {
         
         public void exit() {
             canvas.setRunning(false);
+            Recovery.saveFile(this.canvas.currentState.fishman); 
             System.exit(0);
         }
 
@@ -53,7 +56,8 @@ public class PlatformerGame extends JFrame implements WindowListener {
 	public void windowClosed(WindowEvent e) {}
 
 	public void windowClosing(WindowEvent e) {
-            exit();
+        Recovery.saveFile(this.canvas.currentState.fishman); 
+		exit();
 	}
 
 	public void windowDeactivated(WindowEvent e) {}
