@@ -1,6 +1,8 @@
 package com.lelandcs.platformer;
 
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
+
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -51,7 +53,7 @@ public class PlatformerGame extends JFrame implements WindowListener {
 	public void windowClosed(WindowEvent e) {}
 
 	public void windowClosing(WindowEvent e) {
-            exit();
+		exit();
 	}
 
 	public void windowDeactivated(WindowEvent e) {}

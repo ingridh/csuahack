@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
  */
 public class FishBowl extends GameState {
     
-    private FishManager fishman;
+    public FishManager fishman;
     
     private ParticleStream[] bubbles = {
         new ParticleStream(200, 230, 105, 75, 1, 1,2, 1.5f, "./bubble.png", false, true),
@@ -45,7 +45,6 @@ public class FishBowl extends GameState {
         uiEntities.add(new Image("./bowl2.png"));
         uiEntities.add(new Button(master.CWIDTH - 35, 0, Color.CYAN, Color.BLACK, "X", master.fonts.get("Arial"), 35, 30));
         // add recovery stuff
-        
     }
     
     public void update() {
