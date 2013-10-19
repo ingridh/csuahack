@@ -3,7 +3,9 @@ package com.lelandcs.platformer.gfx;
 import com.lelandcs.platformer.PlatformerGame;
 import com.lelandcs.platformer.states.FishBowl;
 import com.lelandcs.platformer.states.GameState;
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -97,8 +99,7 @@ public class PlatformerCanvas extends Canvas {
         	(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-	    // clear the background
-	    dbg.setColor(Color.WHITE);
+            dbg.setColor(Color.WHITE);
 	    dbg.fillRect(0, 0, CWIDTH, CHEIGHT);
             
             currentState.render(dbg); // render the current state's graphics

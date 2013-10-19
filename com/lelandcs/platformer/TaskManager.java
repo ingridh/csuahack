@@ -24,7 +24,7 @@ public class TaskManager {
         currWindow.setResizable(false);
         currWindow.setLocationRelativeTo(null);
         currWindow.setVisible(true);
-        currWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        currWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void pressedOk(String s, Date d) {
@@ -32,6 +32,4 @@ public class TaskManager {
         currWindow.dispose();
         currWindow = null;
     }
-    
-    
 }

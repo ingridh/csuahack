@@ -1,6 +1,11 @@
 package com.lelandcs.platformer;
 
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsDevice.WindowTranslucency;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -17,10 +22,11 @@ public class PlatformerGame extends JFrame implements WindowListener {
 	public PlatformerGame() {
             super("FishStuff"); // argument - title of window
             setUndecorated(true); //Removes the window
-            //setOpacity(0.5f);
-
+            
+            
             canvas = new PlatformerCanvas(this, FPS);
             add(canvas); // add the game graphics panel to the JFrame
+
             
             
             pack(); // fixes window size
@@ -32,6 +38,8 @@ public class PlatformerGame extends JFrame implements WindowListener {
             setVisible(true); // sets the window visible
 
             setLocation(100, 100);
+            
+            //setBackground(new Color(0,0,0,0));
 	}
         
         /* Start point */

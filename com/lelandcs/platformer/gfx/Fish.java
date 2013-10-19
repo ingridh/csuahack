@@ -3,10 +3,6 @@ package com.lelandcs.platformer.gfx;
 import com.lelandcs.platformer.Date;
 import com.lelandcs.platformer.gfx.gui.Image;
 import java.awt.Graphics2D;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 
 public class Fish{
 	
@@ -23,7 +19,7 @@ public class Fish{
 	
 	public Fish(String name, Date date, FishManager manager) {
 		
-		image = new Image("fish.png");
+		image = new Image("./fish.png");
 		image.x = 0; //Get random x and y coords for 
 		image.y = 0;
 		state = State.FADEIN; 

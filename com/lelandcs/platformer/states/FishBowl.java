@@ -5,8 +5,8 @@ import com.lelandcs.platformer.gfx.PlatformerCanvas;
 import com.lelandcs.platformer.gfx.gui.Button;
 import com.lelandcs.platformer.gfx.gui.Image;
 import com.lelandcs.platformer.gfx.gui.UIEntity;
+import com.lelandcs.platformer.gfx.particlesystem.ParticleStream;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
@@ -16,7 +16,11 @@ import java.awt.event.KeyEvent;
 public class FishBowl extends GameState {
     
     private FishManager fishman;
-    private Image bowl;
+    
+    private ParticleStream[] bubbles = {
+        new ParticleStream(200, 200, 100, 80, 1, 1,1, 1.5f, "./bubble.png", false, false),
+        new ParticleStream(400, 300, 100, 80, 1, 1,1, 2.5f, "./bubble.png", false, false)
+    };
     
     public FishBowl(PlatformerCanvas master) {
         super(master); 
@@ -26,6 +30,8 @@ public class FishBowl extends GameState {
     public void init() {
         super.init();
         // startup code here
+        for (ParticleStream s : bubbles)
+            s.start();
         fishman = new FishManager();
         
         loadUI(); 
@@ -33,10 +39,12 @@ public class FishBowl extends GameState {
     
     private void loadUI() {
         uiEntities.add(new Image("./bowl.png"));
-        uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "x", master.fonts.get("Arial"), 30, 30));
+        uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "X", master.fonts.get("Arial"), 30, 30));
     }
     
     public void update() {
+        for (ParticleStream s : bubbles)
+            s.update();
         fishman.update();
         
     }
@@ -48,6 +56,9 @@ public class FishBowl extends GameState {
         for (UIEntity e : uiEntities) {
             e.render(g);
         }
+        
+        for (ParticleStream s : bubbles)
+            s.render(g);
     }
  
     public void handleMousePress(int x, int y) {
@@ -55,23 +66,25 @@ public class FishBowl extends GameState {
     }
     
     public void handleMouseRelease(int x, int y) {
+        UIEntity last = null;
         for (UIEntity e : uiEntities) {
-            if (e instanceof Button) {
-                Button b = (Button) e;
-                if (b.focused) {
-                    System.out.println("Clicked on " + b.name + "!");
-                    if (b.name.equals("x")) {
-                        master.app.exit();
-                    }
+            if (e.focused) {
+                last = e;
+            }
+        }
+        
+        if (last != null) {
+            System.out.println("Clicked on " + last.name + "!");
+            if (last instanceof Button) {
+                Button b = (Button) last;
+                if (b.name.equals("X")) {
+                    master.app.exit();
                 }
             }
-            else if (e instanceof Image) {
-                Image i = (Image) e;
-                if (i.focused) {
-                    System.out.println("Clicked on " + i.name + "!");
-                    if (i.name.equals("./bowl.png")) {
-                        fishman.sendAddTask();
-                    }
+            else if (last instanceof Image) {
+                Image i = (Image) last;
+                if (i.name.equals("./bowl.png")) {
+                    fishman.sendAddTask();
                 }
             }
         }
