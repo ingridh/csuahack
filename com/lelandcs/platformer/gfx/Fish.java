@@ -2,6 +2,8 @@ package com.lelandcs.platformer.gfx;
  
 import com.lelandcs.platformer.Date;
 import com.lelandcs.platformer.gfx.gui.Image;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Calendar;
@@ -15,6 +17,7 @@ public class Fish{
     
     String fishName; 
     Image image; 
+    Font font;
     FishManager manager;
     Date expirationTime;
     
@@ -43,16 +46,20 @@ public class Fish{
         }
         
         if (dirx == 1) {
-            xdist = (int) (Math.random() * (rectangle.x + rectangle.width - image.x - 10));
+            xdist = (int) (Math.random() * (rectangle.x + rectangle.width - image.x - 30) + 20);
         }
         else {
-            xdist = (int) (Math.random() * (image.x - rectangle.x - 10));
+            xdist = (int) (Math.random() * (image.x - rectangle.x - 30) + 20);
         }
         
         state = State.FADEIN; 
         image.a = 0;
         
         expirationTime = date;
+        
+        fishName = name;
+        
+        font = PlatformerCanvas.fonts.get("Monospaced");
     }
      
     public void update() {
@@ -101,7 +108,12 @@ public class Fish{
                 
                 xdist -= magx;
                 
-                System.out.println(xdist);
+                if (image.y <= rectangle.y) {
+                    diry = 1;
+                }
+                else if (image.y + image.height >= rectangle.y + rectangle.height) {
+                    diry = -1;
+                }
                 
                 if (xdist <= 0) {
                     dirx *= -1;
@@ -109,10 +121,10 @@ public class Fish{
                     magy = (float)(Math.random() * 0.2);
                     diry = ((int) (Math.random() * 2)) == 0 ? -1 : 1;
                     if (dirx == 1) {
-                        xdist = (int) (Math.random() * (rectangle.x + rectangle.width - image.x - 10));
+                        xdist = (int) (Math.random() * (rectangle.x + rectangle.width - image.x - 30) + 20);
                     }
                     else {
-                        xdist = (int) (Math.random() * (image.x - rectangle.x - 10));
+                        xdist = (int) (Math.random() * (image.x - rectangle.x - 30) + 20);
                     }
                 }  
                 break;
@@ -121,9 +133,16 @@ public class Fish{
         image.x += dirx * magx;
         image.y += diry * magy;
     }
+    
+    
      
     public void draw(Graphics2D g) {
         image.render(g);
+        Color c = g.getColor();
+        g.setColor(Color.BLACK);
+        //g.setFont(font);
+        g.drawString(fishName, image.x - 5, image.y - 5);
+        g.setColor(c);
     }
      
     public void checkDates() {
@@ -134,7 +153,6 @@ public class Fish{
         Date d = new Date("" + hour, "" + day, "" + month);
         if (expirationTime.compareTo(d) <= 0) {
             state = State.DIE;
-            System.out.println("OOPS");
         }
     }
 }

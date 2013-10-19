@@ -18,7 +18,8 @@ public class FishBowl extends GameState {
     private FishManager fishman;
     
     private ParticleStream[] bubbles = {
-        new ParticleStream(200, 200, 105, 75, 1, 1,3, 1.5f, "./bubble.png", false, true),
+        new ParticleStream(200, 230, 105, 75, 1, 1,3, 1.5f, "./bubble.png", false, true),
+        new ParticleStream(260, 320, 100, 80, 1, 1,2, 1.9f, "./bubble.png", false, true),
         new ParticleStream(400, 300, 105, 75, 1, 1,3, 2.5f, "./bubble.png", false, true)
     };
     

@@ -28,7 +28,7 @@ public class PlatformerCanvas extends Canvas {
     private Graphics2D dbg; 
     private Image dbImage;
     
-    public HashMap<String, Font> fonts;
+    public static HashMap<String, Font> fonts;
     
     public PlatformerGame app;
     
@@ -65,7 +65,7 @@ public class PlatformerCanvas extends Canvas {
     
     private void loadFonts() {
         fonts = new HashMap<String, Font>();
-        Font f1 = new Font("Monospaced", Font.ITALIC, 24);
+        Font f1 = new Font("Monospaced", Font.PLAIN, 24);
         fonts.put(f1.getFamily(), f1);
     }
 

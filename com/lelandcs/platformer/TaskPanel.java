@@ -4,8 +4,10 @@
  */
 package com.lelandcs.platformer;
 
+import com.lelandcs.platformer.gfx.Fish;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 /**
  *
@@ -23,6 +25,14 @@ public class TaskPanel extends javax.swing.JPanel implements ActionListener {
         jButton1.addActionListener(this);
         
         this.taskman = tm;
+        
+        Calendar calender = Calendar.getInstance();
+        int month = calender.get(Calendar.MONTH);
+        int day = calender.get(Calendar.DAY_OF_MONTH);
+        int hour = calender.get(Calendar.HOUR_OF_DAY);
+        jComboBox1.setSelectedIndex(month-1);
+        jComboBox2.setSelectedIndex(day-1);
+        jComboBox3.setSelectedIndex(hour);
     }
 
     /**
@@ -108,7 +118,7 @@ public class TaskPanel extends javax.swing.JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Date d = new Date((String)jComboBox3.getSelectedItem(), (String)jComboBox2.getSelectedItem(), "" + jComboBox1.getSelectedIndex());
+        Date d = new Date((String)jComboBox3.getSelectedItem(), (String)jComboBox2.getSelectedItem(), "" + (jComboBox1.getSelectedIndex()+1));
         String text = jTextField1.getText();
         taskman.pressedOk(text.length() > 25 ? text.substring(0, 25) : text, d);
     }
