@@ -5,10 +5,16 @@ public class Date implements Comparable {
     private String day; //1-31
     private String hour;
     private String month; // day = month * 24 * 31
+    
+    public Date(String hours) {
+    	this(hours, "0", "0");
+    }
     public Date (String hour, String day, String month) {
-        this.day = day;
-        this.month = month;
-        this.hour = hour;
+    	this.hour = new Integer((Integer.parseInt(hour)+ 60) % 60).toString();
+    	this.day = new Integer((Integer.parseInt(day) + 31) % 31 + Integer.parseInt(hour)/60).toString(); 
+    	this.month = new Integer(Integer.parseInt(month) + Integer.parseInt(day)/31).toString();
+        
+        
     }
      
     public String getDay() {
