@@ -1,16 +1,22 @@
 package com.lelandcs.platformer.states;
 
+import com.lelandcs.platformer.gfx.FishManager;
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
 import com.lelandcs.platformer.gfx.gui.Button;
+import com.lelandcs.platformer.gfx.gui.Image;
 import com.lelandcs.platformer.gfx.gui.UIEntity;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 /**
  *
  */
 public class FishBowl extends GameState {
+    
+    private FishManager fishman;
+    private Image bowl;
     
     public FishBowl(PlatformerCanvas master) {
         super(master); 
@@ -19,22 +25,25 @@ public class FishBowl extends GameState {
     public void init() {
         super.init();
         // startup code here
+        fishman = new FishManager();
+        
         loadUI(); 
     }
     
     private void loadUI() {
-        uiEntities.add(new Button(370, 0, Color.YELLOW, Color.BLACK, "x", master.fonts.get("Arial"), 30, 30));
+        uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "x", master.fonts.get("Arial"), 30, 30));
+        
+        uiEntities.add(new Image("bowl"));
     }
     
     public void update() {
         
     }
     
-    public void render(Graphics g) {
+    public void render(Graphics2D g) {
         //g.setFont(master.fonts.get("Arial"));
 	//g.setColor(Color.white);
         //g.drawString("In the Game Menu!", 300 , 300);
-        
         for (UIEntity e : uiEntities) {
             e.render(g);
         }
@@ -52,6 +61,9 @@ public class FishBowl extends GameState {
                     //System.out.println("Clicked on " + b.name + "!");
                     if (b.name.equals("x")) {
                         master.app.exit();
+                    }
+                    else if (b.name.equals("bowl")) {
+                        fishman.sendAddTask();
                     }
                 }
             }

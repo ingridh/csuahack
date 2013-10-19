@@ -1,6 +1,7 @@
 package com.lelandcs.platformer.gfx.gui;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -18,5 +19,5 @@ public abstract class UIEntity {
     /* Indicates if this entity is focused */
     public boolean focused = false;
     
-    public abstract void render(Graphics g);
+    public abstract void render(Graphics2D g);
 }

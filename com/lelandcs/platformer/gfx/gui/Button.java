@@ -3,6 +3,7 @@ package com.lelandcs.platformer.gfx.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 /**
@@ -52,7 +53,7 @@ public class Button extends UIEntity {
         }
     }
     
-    public void render(Graphics g) {
+    public void render(Graphics2D g) {
         Color initial = g.getColor(); // preserve old color
         
         if (focused) {
