@@ -102,6 +102,7 @@ public class PlatformerCanvas extends Canvas {
             dbg.setColor(Color.WHITE);
 	    dbg.fillRect(0, 0, CWIDTH, CHEIGHT);
             
+            //ScreenshotHaxorz.updateBackground(dbg, app.getX(), app.getY());
             currentState.render(dbg); // render the current state's graphics
 	    
 	    Graphics g;

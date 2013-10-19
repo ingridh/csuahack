@@ -1,5 +1,8 @@
 package com.lelandcs.platformer.states;
 
+import com.lelandcs.platformer.gfx.Fish;
+import com.lelandcs.platformer.gfx.Fish.State;
+import com.lelandcs.platformer.gfx.FishImage;
 import com.lelandcs.platformer.gfx.FishManager;
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
 import com.lelandcs.platformer.gfx.Recovery;
@@ -19,9 +22,9 @@ public class FishBowl extends GameState {
     public FishManager fishman;
     
     private ParticleStream[] bubbles = {
-        new ParticleStream(200, 230, 105, 75, 1, 1,3, 1.5f, "./bubble.png", false, true),
+        new ParticleStream(200, 230, 105, 75, 1, 1,2, 1.5f, "./bubble.png", false, true),
         new ParticleStream(260, 320, 100, 80, 1, 1,2, 1.9f, "./bubble.png", false, true),
-        new ParticleStream(400, 300, 105, 75, 1, 1,3, 2.5f, "./bubble.png", false, true)
+        new ParticleStream(420, 300, 105, 75, 1, 1,3, 2.5f, "./bubble.png", false, true)
     };
     
     public FishBowl(PlatformerCanvas master) {
@@ -34,16 +37,22 @@ public class FishBowl extends GameState {
         // startup code here
         for (ParticleStream s : bubbles)
             s.start();
-        fishman = new FishManager();
         
         loadUI(); 
+        fishman = new FishManager(this);
     }
     
     private void loadUI() {
         uiEntities.add(new Image("./bowl.png"));
+<<<<<<< HEAD
         uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "X", master.fonts.get("Arial"), 30, 30));
     
         Recovery.openFile(fishman);
+=======
+        uiEntities.add(new Button(master.CWIDTH - 35, 0, Color.CYAN, Color.BLACK, "X", master.fonts.get("Arial"), 35, 30));
+        // add recovery stuff
+        
+>>>>>>> 1ea05a593b94f54b843f8655c517212d66097775
     }
     
     public void update() {
@@ -66,12 +75,25 @@ public class FishBowl extends GameState {
         for (ParticleStream s : bubbles)
             s.render(g);
     }
- 
+    
+    boolean dragging = false;
+    int ix = 0, iy = 0;
     public void handleMousePress(int x, int y) {
-        
+        dragging = true;
+        ix = x;
+        iy = y;
     }
     
     public void handleMouseRelease(int x, int y) {
+        if (dragging &&
+            ((x - ix) > 5) && ((y-iy)>5)) {
+            System.out.println(x + " " +  y);
+            master.app.setLocation(master.app.getX() + x - ix, master.app.getY() + y - iy);
+            dragging = false;
+            return;
+        }
+        dragging = false;
+        
         UIEntity last = null;
         for (UIEntity e : uiEntities) {
             if (e.focused) {
@@ -86,6 +108,11 @@ public class FishBowl extends GameState {
                 if (b.name.equals("X")) {
                     master.app.exit();
                 }
+            }
+            else if (last instanceof FishImage) {
+                FishImage i = (FishImage) last;
+                Fish f = i.f;
+                f.setState(State.FADEOUT);
             }
             else if (last instanceof Image) {
                 Image i = (Image) last;
@@ -102,7 +129,11 @@ public class FishBowl extends GameState {
                 Button b = (Button) e;
                 b.checkForClick(x, y);
             }
-            if (e instanceof Image) {
+            else if (e instanceof FishImage) {
+                FishImage i = (FishImage) e;
+                i.checkForClick(x, y);
+            }
+            else if (e instanceof Image) {
                 Image i = (Image) e;
                 i.checkForClick(x, y);
             }
