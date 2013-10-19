@@ -33,8 +33,6 @@ public class PlatformerGame extends JFrame implements WindowListener {
             setVisible(true); // sets the window visible
 
             setLocation(100, 100);
-            
-            //setBackground(new Color(0,0,0,0));
 	}
         
         /* Start point */

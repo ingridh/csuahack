@@ -54,6 +54,12 @@ public class Image extends UIEntity {
     }
     
     public void checkForClick(int mousex, int mousey) {
+        if (a <= 0) {
+            focused = false;
+            return;
+        }
+        rec.x = (int)x;
+        rec.y = (int)y;
         if (rec.contains(mousex, mousey)) {
             focused = true;
         }

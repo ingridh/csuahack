@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Calendar;
  
-public class Fish{
+public class Fish {
      
     public enum State{
        DEAD, SWIM, FADEIN, DIE, FADEOUT
@@ -16,7 +16,7 @@ public class Fish{
     State state;
     
     String fishName; 
-    Image image; 
+    FishImage image; 
     Font font;
     FishManager manager;
     Date expirationTime;
@@ -32,7 +32,7 @@ public class Fish{
     public Fish(String name, Date date, FishManager manager) {
         this.manager = manager;
         Rectangle rectangle = manager.getBounds();
-        image = new Image("./fish.png");
+        image = new FishImage("./fish.png", this);
         
         image.x = (float)(Math.random()*(rectangle.width - 10 - image.width) + rectangle.x); 
         image.y = (float)(Math.random()*(rectangle.height - 10 - image.height) + rectangle.y);
@@ -88,7 +88,7 @@ public class Fish{
                 image.a -= 0.01f;
                 if (image.a <= 0) {
                     image.a = 0;
-                    manager.removeFish(this);
+                    //manager.removeFish(this);
                     return;
                 }
                 break;
@@ -134,9 +134,15 @@ public class Fish{
         image.y += diry * magy;
     }
     
-    
+    // do not call unless you know exactly what you are doing
+    public void setState(State s) {
+        this.state = s;
+    }
      
     public void draw(Graphics2D g) {
+        if (image.a <= 0) {
+            return;
+        }
         image.render(g);
         Color c = g.getColor();
         g.setColor(Color.BLACK);
