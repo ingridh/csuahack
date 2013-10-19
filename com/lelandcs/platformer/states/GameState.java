@@ -24,7 +24,6 @@ public class GameState {
     
     public GameState(PlatformerCanvas master) {
         this.master = master;
-        init();
     } 
     
     public void init() {

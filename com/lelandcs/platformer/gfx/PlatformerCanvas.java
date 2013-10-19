@@ -1,8 +1,8 @@
 package com.lelandcs.platformer.gfx;
 
 import com.lelandcs.platformer.PlatformerGame;
-import com.lelandcs.platformer.states.GameState;
 import com.lelandcs.platformer.states.FishBowl;
+import com.lelandcs.platformer.states.GameState;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -21,7 +21,7 @@ public class PlatformerCanvas extends Canvas {
     public static final int CWIDTH = 640;
     
     /* Keep track of the current state */
-    public GameState currentState;
+    public FishBowl currentState;
     
     private Graphics2D dbg; 
     private Image dbImage;
@@ -98,7 +98,7 @@ public class PlatformerCanvas extends Canvas {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
 	    // clear the background
-	    dbg.setColor(Color.black);
+	    dbg.setColor(Color.WHITE);
 	    dbg.fillRect(0, 0, CWIDTH, CHEIGHT);
             
             currentState.render(dbg); // render the current state's graphics

@@ -45,9 +45,9 @@ public class FishManager {
         return fishies;
     }
     
-    public void update(float t) {
+    public void update() {
         for (Fish f : fishies) {
-            f.update(t);
+            f.update();
         }
     }
     

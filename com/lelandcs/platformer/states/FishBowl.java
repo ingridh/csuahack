@@ -20,6 +20,7 @@ public class FishBowl extends GameState {
     
     public FishBowl(PlatformerCanvas master) {
         super(master); 
+        init();
     }
     
     public void init() {
@@ -31,12 +32,12 @@ public class FishBowl extends GameState {
     }
     
     private void loadUI() {
+        uiEntities.add(new Image("./bowl.png"));
         uiEntities.add(new Button(master.CWIDTH - 30, 0, Color.YELLOW, Color.BLACK, "x", master.fonts.get("Arial"), 30, 30));
-        
-        uiEntities.add(new Image("bowl"));
     }
     
     public void update() {
+        fishman.update();
         
     }
     
@@ -58,11 +59,17 @@ public class FishBowl extends GameState {
             if (e instanceof Button) {
                 Button b = (Button) e;
                 if (b.focused) {
-                    //System.out.println("Clicked on " + b.name + "!");
+                    System.out.println("Clicked on " + b.name + "!");
                     if (b.name.equals("x")) {
                         master.app.exit();
                     }
-                    else if (b.name.equals("bowl")) {
+                }
+            }
+            else if (e instanceof Image) {
+                Image i = (Image) e;
+                if (i.focused) {
+                    System.out.println("Clicked on " + i.name + "!");
+                    if (i.name.equals("./bowl.png")) {
                         fishman.sendAddTask();
                     }
                 }
@@ -75,6 +82,10 @@ public class FishBowl extends GameState {
             if (e instanceof Button) {
                 Button b = (Button) e;
                 b.checkForClick(x, y);
+            }
+            if (e instanceof Image) {
+                Image i = (Image) e;
+                i.checkForClick(x, y);
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.lelandcs.platformer.gfx;
 
+import com.lelandcs.platformer.Date;
+import com.lelandcs.platformer.gfx.gui.Image;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +21,7 @@ public class Fish{
 	float timeInterval = 0f;
 	
 	
-	public Fish(String name, int date, FishManager manager) {
+	public Fish(String name, Date date, FishManager manager) {
 		
 		image = new Image("fish.png");
 		image.x = 0; //Get random x and y coords for 
@@ -30,8 +32,8 @@ public class Fish{
 				
 	}
 	
-	public void update(float time) {
-		currTime += time;
+	public void update() {
+		//currTime += time;
 		if (state == State.DIE) {
 			state = State.FADEOUT; //If it has died in the last cycle begin fadeout! 
 		}
@@ -44,7 +46,7 @@ public class Fish{
 	}
 	
 	public void draw(Graphics2D g) {
-		image.draw(g);
+		image.render(g);
 		
 	}
 	
