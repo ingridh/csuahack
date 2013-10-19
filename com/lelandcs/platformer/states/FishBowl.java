@@ -10,9 +10,9 @@ import java.awt.event.KeyEvent;
 /**
  *
  */
-public class MainMenu extends GameState {
+public class FishBowl extends GameState {
     
-    public MainMenu(PlatformerCanvas master) {
+    public FishBowl(PlatformerCanvas master) {
         super(master); 
     }
     

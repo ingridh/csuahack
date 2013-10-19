@@ -2,7 +2,7 @@ package com.lelandcs.platformer.gfx;
 
 import com.lelandcs.platformer.PlatformerGame;
 import com.lelandcs.platformer.states.GameState;
-import com.lelandcs.platformer.states.MainMenu;
+import com.lelandcs.platformer.states.FishBowl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -44,7 +44,7 @@ public class PlatformerCanvas extends Canvas {
         
         loadFonts();
         
-        setState("menu");
+        setState("bowl");
     }
     
     /* Switches the state and loads it */
@@ -56,8 +56,8 @@ public class PlatformerCanvas extends Canvas {
             removeMouseListener(currentState.mouseAdapter);
         }
         
-        if (state.equals("menu")) {
-            currentState = new MainMenu(this);
+        if (state.equals("bowl")) {
+            currentState = new FishBowl(this);
         }
     }
     
