@@ -109,7 +109,7 @@ public class TaskPanel extends javax.swing.JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Date d = new Date(jComboBox3.getSelectedItem(), jComboBox2.getSelectedItem(), jComboBox1.getSelectedItem());
+        Date d = new Date((String)jComboBox3.getSelectedItem(), (String)jComboBox2.getSelectedItem(), (String)jComboBox1.getSelectedItem());
         
         taskman.pressedOk(jTextField1.getText().substring(0, 25), d);
     }

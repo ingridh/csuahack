@@ -1,6 +1,8 @@
 package com.lelandcs.platformer.gfx;
 
+import com.lelandcs.platformer.Date;
 import com.lelandcs.platformer.TaskManager;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class FishManager {
     }
     
     public void addFish(String name, Date d) {
-        fishies.add(new Fish(name, d));
+        fishies.add(new Fish(name, d, this));
     }
     
     public void removeFish(Fish f) {
@@ -45,13 +47,13 @@ public class FishManager {
     
     public void update(float t) {
         for (Fish f : fishies) {
-            f.update(f);
+            f.update(t);
         }
     }
     
     public void render(Graphics2D g) {
         for (Fish f : fishies) {
-            f.render(g);
+            f.draw(g);
         }
     }
 }
