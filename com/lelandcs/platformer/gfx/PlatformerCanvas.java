@@ -17,8 +17,8 @@ import java.util.HashMap;
  * It can be added to a JFrame or made into an Applet
  */
 public class PlatformerCanvas extends Canvas {
-    public static final int CHEIGHT = 600; // The dimensions of the panel
-    public static final int CWIDTH = 800;
+    public static final int CHEIGHT = 400; // The dimensions of the panel
+    public static final int CWIDTH = 400;
     
     /* Keep track of the current state */
     public GameState currentState;

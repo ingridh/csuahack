@@ -23,7 +23,7 @@ public class FishBowl extends GameState {
     }
     
     private void loadUI() {
-        uiEntities.add(new Button(350, 350, Color.GRAY, Color.WHITE, "Test", master.fonts.get("Arial")));
+        uiEntities.add(new Button(370, 0, Color.YELLOW, Color.BLACK, "x", master.fonts.get("Arial"), 30, 30));
     }
     
     public void update() {
@@ -31,9 +31,9 @@ public class FishBowl extends GameState {
     }
     
     public void render(Graphics g) {
-        g.setFont(master.fonts.get("Arial"));
-	g.setColor(Color.white);
-        g.drawString("In the Game Menu!", 300 , 300);
+        //g.setFont(master.fonts.get("Arial"));
+	//g.setColor(Color.white);
+        //g.drawString("In the Game Menu!", 300 , 300);
         
         for (UIEntity e : uiEntities) {
             e.render(g);
@@ -49,7 +49,10 @@ public class FishBowl extends GameState {
             if (e instanceof Button) {
                 Button b = (Button) e;
                 if (b.focused) {
-                    System.out.println("Clicked on " + b.name + "!");
+                    //System.out.println("Clicked on " + b.name + "!");
+                    if (b.name.equals("x")) {
+                        master.app.exit();
+                    }
                 }
             }
         }
