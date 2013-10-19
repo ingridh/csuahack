@@ -18,8 +18,8 @@ public class FishBowl extends GameState {
     private FishManager fishman;
     
     private ParticleStream[] bubbles = {
-        new ParticleStream(200, 200, 100, 80, 1, 1,1, 1.5f, "./bubble.png", false, false),
-        new ParticleStream(400, 300, 100, 80, 1, 1,1, 2.5f, "./bubble.png", false, false)
+        new ParticleStream(200, 200, 105, 75, 1, 1,3, 1.5f, "./bubble.png", false, true),
+        new ParticleStream(400, 300, 105, 75, 1, 1,3, 2.5f, "./bubble.png", false, true)
     };
     
     public FishBowl(PlatformerCanvas master) {
@@ -56,6 +56,8 @@ public class FishBowl extends GameState {
         for (UIEntity e : uiEntities) {
             e.render(g);
         }
+        
+        fishman.render(g);
         
         for (ParticleStream s : bubbles)
             s.render(g);

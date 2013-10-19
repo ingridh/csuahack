@@ -21,7 +21,7 @@ public class FishManager {
     
     public FishManager() {
         fishies = new ArrayList<Fish>();
-        bounds = new Rectangle(80, 60, 480, 420);
+        bounds = new Rectangle(130, 100, 390, 255);
         taskMan = new TaskManager(this);
     }
     

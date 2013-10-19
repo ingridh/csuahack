@@ -1,11 +1,6 @@
 package com.lelandcs.platformer;
 
 import com.lelandcs.platformer.gfx.PlatformerCanvas;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsDevice.WindowTranslucency;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
@@ -20,7 +15,7 @@ public class PlatformerGame extends JFrame implements WindowListener {
 	private PlatformerCanvas canvas;
 
 	public PlatformerGame() {
-            super("FishStuff"); // argument - title of window
+            super("FishBowl"); // argument - title of window
             setUndecorated(true); //Removes the window
             
             

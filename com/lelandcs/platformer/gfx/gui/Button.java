@@ -53,8 +53,7 @@ public class Button extends UIEntity {
         }
     }
     
-    public void render(Graphics2D g2) {
-        Graphics g = (Graphics) g2;
+    public void render(Graphics2D g) {
         Color initial = g.getColor(); // preserve old color
         
         if (focused) {
@@ -63,7 +62,7 @@ public class Button extends UIEntity {
         else {
             g.setColor(buttonColor);
         }
-        g.fillRect(x, y, width, height);
+        g.fillRect((int)x, (int)y, width, height);
        
         g.setColor(textColor);
         g.setFont(font);

@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
  */
 public abstract class UIEntity {
     /* The position and dimensions of the entity */
-    public int x;
-    public int y;
+    public float x;
+    public float y;
     public int height;
     public int width;
     

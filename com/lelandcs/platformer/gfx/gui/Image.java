@@ -5,6 +5,8 @@ import java.awt.AlphaComposite;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +35,22 @@ public class Image extends UIEntity {
         this.width = img.getWidth();
         this.name = path;
         
-        rec = new Rectangle(x, y, width, height);
+        rec = new Rectangle((int)x, (int)y, width, height);
+    }
+    
+    public void flip(boolean hor) {
+        if (!hor) {
+            AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+            tx.translate(0, -img.getHeight(null));
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            img = op.filter(img, null);
+        }
+        else {
+            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+            tx.translate(-img.getWidth(null), 0);
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            img = op.filter(img, null);
+        }
     }
     
     public void checkForClick(int mousex, int mousey) {
@@ -49,7 +66,7 @@ public class Image extends UIEntity {
         Composite c = g.getComposite();
         g.setComposite( AlphaComposite.getInstance(AlphaComposite.SRC_OVER, a));
 
-        g.drawImage(img, x, y, null);
+        g.drawImage(img, (int)x, (int)y, null);
         g.setComposite(c);
     }
 }
